@@ -1,0 +1,7 @@
+PyQt6
+requests
+openai
+sphinx
+sphinx-rtd-theme
+pylint
+black
