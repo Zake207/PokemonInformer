@@ -1,12 +1,26 @@
 [tool.black]
-line-length = 88
-include = '\.py$'
+# Longitud máxima de línea (por defecto es 88, puedes cambiarlo a 100 o 120 si prefieres)
+line-length = 80
+
+# Versión de Python objetivo
+# Puedes usar 'py37', 'py38', 'py39', 'py310', etc.
+target-version = ['py38', 'py39']
+
+# No cambiar comillas simples a dobles (por defecto las cambia a dobles)
+skip-string-normalization = true
+
+# No reordenar importaciones (por defecto Black no toca los imports)
+skip-magic-trailing-comma = false
+
+# Incluir solo archivos con extensión .py o .pyi
+include = '\\.pyi?$'
+
+# Excluir ciertos archivos o directorios del formateo
 exclude = '''
 /(
+    | venv                # Ignorar entorno virtual
+    | __pycache__         # Archivos cacheados de Python
     | doc
     | .github
-    | test
-    | venv
-    | .pylintrc
 )/
 '''

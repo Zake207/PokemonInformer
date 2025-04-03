@@ -24,7 +24,9 @@ Este Linter tiene diferentes modos de ejecución:
 + Sobre el proyecto: *pylint \[Ruta/del/directorio\]*
 
 ### Formater
-Para formatear el código se utiliza el módulo de python *black*, debido a que el uso de otras herramientas como prettier me resulto confuso dado a que lo he usado en otros ámbitos. Para formatear el código se debe ejecutar este comando: *black .*
+Para formatear el código se utiliza el módulo de python *black*, debido a que el uso de otras herramientas como prettier me resulto confuso dado a que lo he usado en otros ámbitos. Para formatear el código se debe ejecutar este comando: *black --config pyproject.toml \[Ruta/al/fichero/o/carpeta\]*
+
+El principal problema con este formateador es que si tengo declarada una string demasiado larga este no la dividirá pues la opción que hacía esto se quitó en versiones anteriores a la que estoy usando (25.1.0), por lo que ese problema se debe solucionar a mano
 
 ### PyQt6
 El módulo PyQt6, si bien tiene una [documentación](https://doc.qt.io/qtforpython-6/index.html), la considero más adecuada para la comprensión a profundidad del funcionamiento de este. Para un aprendizaje más ágil recurrí a chatgpt para que me generase ejemplos de como funcionan los principales elementos de este módulo, con sus configuraciones, a continuación se enlistan las conversaciones pertinentes a modo de curiosidad.

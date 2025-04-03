@@ -21,9 +21,7 @@ class MainWindow(QMainWindow):
         self.boton.clicked.connect(self.ExampleFunction)
 
         self.boton.setShortcut("Ctrl+B")
-        self.boton.setToolTip(
-            "Este es un botón de ejemplo. Presiona Ctrl+B para activarlo."
-        )
+        self.boton.setToolTip("Este es un botón de ejemplo. Presiona Ctrl+B para activarlo.")
 
         self.boton.setIcon(QIcon("./examples/PyQt6/pokeball.png"))
         self.boton.setIconSize(self.boton.size())  # Ajusta el tamaño del icono
