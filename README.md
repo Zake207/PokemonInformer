@@ -20,6 +20,11 @@ Se usa el módulo de pyhton *Sphinx*, para generar la documentación del código
 **Generación** **
 
 ## Desarrollo
+
+### Github
+Usar GithubActions para coverall, integración contínua, cloude sonet, etc
+Usar el formato de comentarios conventional commits
+
 ### Entornos virtuales
 El uso de entornos virtuales en sistemas operativos basados en Ubuntu o Debian se complican debido a que estos sistemas tratan todos los entornos virtuales como *externally-managed-enviorment* lo que no permite la instalación de paquetes dentro de estos entornos, por lo que los paquetes en mi máquina ubuntu he de instalarlas. Esto pasa con los entornos virtuales creados por el comando de python3 *python3 -m venv my_venv*, sin embargo, instalar el paquete de python3 *virtualenv* soluciona el problema, permitiendo instalar modulos dentro del entorno virtual.
 
