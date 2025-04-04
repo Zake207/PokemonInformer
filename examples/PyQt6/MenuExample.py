@@ -1,3 +1,7 @@
+"""
+    This module is a general example about the main window of the project
+"""
+
 import sys
 from PyQt6.QtGui import QIcon, QPixmap, QPainter, QAction
 from PyQt6.QtWidgets import QApplication, QMainWindow

@@ -442,6 +442,7 @@ disable=raw-checker-failed,
         invalid-name,
         wildcard-import,
         c-extension-no-member,
+        no-name-in-module,
         import-error, 
         wrong-import-order
 

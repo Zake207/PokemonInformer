@@ -5,3 +5,4 @@ sphinx // Documentación
 sphinx-rtd-theme // Para personalizar la documentación
 pylint // Linter
 black // Formater
+pytest // Test unitarios
