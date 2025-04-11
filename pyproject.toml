@@ -1,6 +1,6 @@
 [tool.black]
 # Longitud máxima de línea (por defecto es 88, puedes cambiarlo a 100 o 120 si prefieres)
-line-length = 80
+line-length = 100
 
 # Versión de Python objetivo
 # Puedes usar 'py37', 'py38', 'py39', 'py310', etc.

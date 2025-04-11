@@ -30,3 +30,22 @@ PokemonNature = Literal["NULL", "adamant", "bashful", "bold", "brave", "calm", "
 PokemonAttackCategory = Literal ["NULL", "physical", "special", "status"]
 
 PokemonAttackObjetive = Literal ["NULL", "single", "area", "itself", "partner"]
+
+HPTABLE = [
+    "fighting",   # 0
+    "flying",     # 1
+    "poison",     # 2
+    "ground",     # 3
+    "rock",       # 4
+    "bug",        # 5
+    "ghost",      # 6
+    "steel",      # 7
+    "fire",       # 8
+    "water",      # 9
+    "grass",      # 10
+    "electric",   # 11
+    "psychic",    # 12
+    "ice",        # 13
+    "dragon",     # 14
+    "dark"        # 15
+]
