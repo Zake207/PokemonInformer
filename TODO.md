@@ -1,5 +1,12 @@
 # TO DO
-+ Clase Object
+## POKEMON
+Una clase Stats para base, ivs, evs, final stats.
+
+Una clase Moveset para los 4 movimientos.
+
+Una clase Metadata para info como nombre, altura, peso, habilidad.
+
++ Mejorar el constructor de la clase, asegurarme los tipos de las variables
 + Método UpdateStats
 + Construir a partir de JSON
-+ Convertir la lista de naturaleza en dictionario que maneje las subidas y bajadas de estísticas
++ Testear y mejorar código

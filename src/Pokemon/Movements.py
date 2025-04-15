@@ -54,3 +54,6 @@ class Movement:
         def contact(self):
             return self._contact
         
+@dataclass
+class Moveset:
+        pass

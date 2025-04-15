@@ -1,5 +1,8 @@
-from Movements import Movement
-from Types import PokemonType, PokemonNature, HPTABLE
+from Movements import Movement, Moveset
+from Stats import PokemonStats
+from Types import PokemonType, PokemonNature, HPTABLE, NATURESTATSEFFECT
+from typing import Dict, Tuple
+from dataclasses import dataclass
 
 
 """
@@ -22,7 +25,7 @@ VALORAR UN PATRÓN DE DISEÑO CREACIONAL PARA SIMPLIFCAR
 POSIBLE SOLUCIÓN, CONFIGURAR EL POKEMON Y HACER CONSULTAS PARA CORROBORAR LOS DATOS Y DAR ERROR O 
 CREAR LA INSTACIA DEL POKEMON EN CUESTION
 """
-
+@dataclass
 class Pokemon:
         _name: str = "Missingno"
         _id: int = -1
@@ -30,17 +33,17 @@ class Pokemon:
         _height: int = -1
         _ability: str = "NULL" 
         _types: tuple[PokemonType, PokemonType] = ("NULL", "NULL")
-        _moves: tuple[Movement, Movement, Movement, Movement] = ["NULL", "NULL", "NULL", "NULL"]
+        _moves: Moveset = None
         _object: str = "NULL"
-        _evs = (0, 0, 0, 0, 0, 0)
-        _ivs = (0, 0, 0, 0, 0, 0) # Hp Atk Def SAtk SDef Spd
-        _base = (0, 0, 0, 0, 0, 0)
-        _stats = (0, 0, 0, 0, 0, 0)
+        _stats: PokemonStats = None
         _nature: PokemonNature = "NULL"
-        _hptype = PokemonType
         
         @classmethod
-        def JSON(cls, file: str):
+        def JsonImport(cls, file: str):
+            pass
+        
+        @classmethod
+        def JsonExport(cls, file: str):
             pass
         
         @property
@@ -76,28 +79,8 @@ class Pokemon:
             return self._object
         
         @property
-        def evs(self):
-            return self._evs
-        
-        @property
-        def ivs(self):
-            return self._ivs
-        
-        @property
-        def base(self):
-            return self._base
-        
-        @property
-        def stats(self):
-            return self._stats
-        
-        @property
         def nature(self):
             return self._nature
-        
-        @property
-        def hptype(self):
-            return self._hptype
         
         @ability.setter
         def abilities(self, new_ability: str):
@@ -105,41 +88,6 @@ class Pokemon:
         
         # EDITAR MOVIMIENTOS
         # EDITAR IVS, CON CALCULO DE HPTYPE INCLUIDO
-        @property
-        def _UpdateHpType(self):
-            a = 0 if self.ivs[0] % 2 == 0 else 1
-            b = 0 if self.ivs[1] % 2 == 0 else 1
-            c = 0 if self.ivs[2] % 2 == 0 else 1
-            d = 0 if self.ivs[5] % 2 == 0 else 1
-            e = 0 if self.ivs[3] % 2 == 0 else 1
-            f = 0 if self.ivs[4] % 2 == 0 else 1
-            result = (a + 2*b + 4*c + 8*d + 16*e + 32*f) / 63
-            self.hptype = HPTABLE[result]
-            pass
-        
-        @property
-        def _UpdateStats(self):
-            pass
-        
-        @ivs.setter
-        def ivs(self, new_ivs: list[int, int, int, int, int, int]):
-            if len(new_ivs) != 6:
-                raise ValueError("ERROR: You must introduce 6 integer numbers between 0 and 31.")
-            for iv in new_ivs:
-                if not iv in range(0,32):
-                    raise ValueError("ERROR: iv's must be integer values between 0 and 31.")
-            self.ivs = new_ivs
-            self._UpdateHpType
-            self._UpdateStats
-        # EDITAR EVS
-        @evs.setter
-        def evs(self, new_evs: list[int, int, int, int, int, int]):
-            if len(new_evs) != 6:
-                raise ValueError("ERROR: You must introduce 6 integer numbers between 0 and 255.")
-            for ev in new_evs:
-                if not ev in range(0,256):
-                    raise ValueError("ERROR: iv's must be integer values between 0 and 255.")
-            self._UpdateStats
         # EDITAR OBJETO
         @object.setter
         def object(self, new_object: str):
