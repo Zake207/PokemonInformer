@@ -35,16 +35,7 @@ class Pokemon:
         _types: tuple[PokemonType, PokemonType] = ("NULL", "NULL")
         _moves: Moveset = None
         _object: str = "NULL"
-        _stats: PokemonStats = None
-        _nature: PokemonNature = "NULL"
-        
-        @classmethod
-        def JsonImport(cls, file: str):
-            pass
-        
-        @classmethod
-        def JsonExport(cls, file: str):
-            pass
+        _stats: PokemonStats = PokemonStats()
         
         @property
         def name(self):
@@ -77,22 +68,3 @@ class Pokemon:
         @property
         def object(self):
             return self._object
-        
-        @property
-        def nature(self):
-            return self._nature
-        
-        @ability.setter
-        def abilities(self, new_ability: str):
-            self.ability = new_ability
-        
-        # EDITAR MOVIMIENTOS
-        # EDITAR IVS, CON CALCULO DE HPTYPE INCLUIDO
-        # EDITAR OBJETO
-        @object.setter
-        def object(self, new_object: str):
-            self._object = new_object
-        # EDITAR NATURALEZA
-        @nature.setter
-        def nature(self, new_nature: PokemonNature):
-            self._nature = new_nature

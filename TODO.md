@@ -1,6 +1,5 @@
 # TO DO
 ## POKEMON
-Una clase Stats para base, ivs, evs, final stats.
 
 Una clase Moveset para los 4 movimientos.
 

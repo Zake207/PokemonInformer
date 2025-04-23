@@ -1,7 +1,6 @@
 from typing import Literal
 
-PokemonType = Literal["NULL", 
-                      "normal", 
+PokemonType = Literal[ "normal", 
                       "fire", 
                       "water", 
                       "grass", 
@@ -26,34 +25,6 @@ PokemonNature = Literal["NULL", "adamant", "bashful", "bold", "brave", "calm", "
     "quiet", "quirky", "rash", "relaxed", "sassy", "serious", 
     "timid"
 ]
-NATURESTATSEFFECT = {
-    "hardy":    (0, 0, 0, 0, 0, 0),
-    "lonely":   (0, 0.1, -0.1, 0, 0, 0),
-    "brave":    (0, 0.1, 0, 0, 0, -0.1),
-    "adamant":  (0, 0.1, 0, -0.1, 0, 0),
-    "naughty":  (0, 0.1, 0, 0, -0.1, 0),
-    "bold":     (0, -0.1, 0.1, 0, 0, 0),
-    "docile":   (0, 0, 0, 0, 0, 0),
-    "relaxed":  (0, 0, 0.1, 0, 0, -0.1),
-    "impish":   (0, 0, 0.1, -0.1, 0, 0),
-    "lax":      (0, 0, 0.1, 0, -0.1, 0),
-    "timid":    (0, -0.1, 0, 0, 0, 0.1),
-    "hasty":    (0, 0, -0.1, 0, 0, 0.1),
-    "serious":  (0, 0, 0, 0, 0, 0),
-    "jolly":    (0, 0, 0, -0.1, 0, 0.1),
-    "naive":    (0, 0, 0, 0, -0.1, 0.1),
-    "modest":   (0, -0.1, 0, 0.1, 0, 0),
-    "mild":     (0, 0, -0.1, 0.1, 0, 0),
-    "quiet":    (0, 0, 0, 0.1, 0, -0.1),
-    "bashful":  (0, 0, 0, 0, 0, 0),
-    "rash":     (0, 0, 0, 0.1, -0.1, 0),
-    "calm":     (0, -0.1, 0, 0, 0.1, 0),
-    "gentle":   (0, 0, -0.1, 0, 0.1, 0),
-    "sassy":    (0, 0, 0, 0, 0.1, -0.1),
-    "careful":  (0, 0, 0, -0.1, 0.1, 0),
-    "quirky":   (0, 0, 0, 0, 0, 0),
-}
-
 
 PokemonAttackCategory = Literal ["NULL", "physical", "special", "status"]
 
@@ -77,3 +48,31 @@ HPTABLE = [
     "dragon",     # 14
     "dark"        # 15
 ]
+
+NATURESTATSEFFECT = {
+    "hardy":    {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.0},
+    "lonely":   {'Atk': 1.1, 'Def': 0.9, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.0},
+    "brave":    {'Atk': 1.1, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 0.9},
+    "adamant":  {'Atk': 1.1, 'Def': 1.0, 'Satk': 0.9, 'Sdef': 1.0, 'Spd': 1.0},
+    "naughty":  {'Atk': 1.1, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 0.9, 'Spd': 1.0},
+    "bold":     {'Atk': 0.9, 'Def': 1.1, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.0},
+    "docile":   {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.0},
+    "relaxed":  {'Atk': 1.0, 'Def': 1.1, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 0.9},
+    "impish":   {'Atk': 1.0, 'Def': 1.1, 'Satk': 0.9, 'Sdef': 1.0, 'Spd': 1.0},
+    "lax":      {'Atk': 1.0, 'Def': 1.1, 'Satk': 1.0, 'Sdef': 0.9, 'Spd': 1.0},
+    "timid":    {'Atk': 0.9, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.1},
+    "hasty":    {'Atk': 1.0, 'Def': 0.9, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.1},
+    "serious":  {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.0},
+    "jolly":    {'Atk': 1.0, 'Def': 1.0, 'Satk': 0.9, 'Sdef': 1.0, 'Spd': 1.1},
+    "naive":    {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 0.9, 'Spd': 1.1},
+    "modest":   {'Atk': 0.9, 'Def': 1.0, 'Satk': 1.1, 'Sdef': 1.0, 'Spd': 1.0},
+    "mild":     {'Atk': 1.0, 'Def': 0.9, 'Satk': 1.1, 'Sdef': 1.0, 'Spd': 1.0},
+    "quiet":    {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.1, 'Sdef': 1.0, 'Spd': 0.9},
+    "bashful":  {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.0},
+    "rash":     {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.1, 'Sdef': 0.9, 'Spd': 1.0},
+    "calm":     {'Atk': 0.9, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.1, 'Spd': 1.0},
+    "gentle":   {'Atk': 1.0, 'Def': 0.9, 'Satk': 1.0, 'Sdef': 1.1, 'Spd': 1.0},
+    "sassy":    {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.1, 'Spd': 0.9},
+    "careful":  {'Atk': 1.0, 'Def': 1.0, 'Satk': 0.9, 'Sdef': 1.1, 'Spd': 1.0},
+    "quirky":   {'Atk': 1.0, 'Def': 1.0, 'Satk': 1.0, 'Sdef': 1.0, 'Spd': 1.0},
+}
