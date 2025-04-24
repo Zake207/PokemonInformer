@@ -1,70 +1,63 @@
-from Movements import Movement, Moveset
+"""
+Main module that defines the logic of a pokemon instance
+
+Includes:
+    + Base Class
+    + File Convertion
+    + DataBase Storage
+"""
+from typing import List
+from Movements import Movement
 from Stats import PokemonStats
-from Types import PokemonType, PokemonNature, HPTABLE, NATURESTATSEFFECT
-from typing import Dict, Tuple
-from dataclasses import dataclass
+from Metadata import Metadata
+from dataclasses import dataclass, field
+import random
 
 
 """
-The code below is used to declare and define de `Pokemon` class with its respective properties
+DECISIÓN DEL DISEÑO: CADA VEZ QUE SE QUIERA EDITAR UN POKEMON SE HACE USO DE LA API PARA CONSULTAR 
+TODOS LOS MOVIMIENTO Y HABILIDADES QUE PUEDE TENER, GUARDARLOS EN UNA VARIABLE DE ENTORNO PARA SU
+USO Y EVITAR HACER MAS CONSULTAS, DESPUES SE PUEDE GUARDAR EN UNA MEMORIA CACHE PARA EVITAR HACER
+CONSULTAS A FUTURO
+ADEMÁS LA MANERA DE SELECCIONAR MOVIMIENTOS PUEDE SER MOSTRAR UN DESPLEGABLE CON TODOS LOS MOVS DEL
+POKEMON, FACILITANDO LA ELECCIÓN DE UN MOVIMIENTO VÁLIDO
+
+AL GUARDAR LA SELECCIÓN SE HACEN LAS CONSULTAS DE LOS MOVIMIENTOS, LAS HABILIDAD, ETC...
 """
 
 
-
-
-"""
-CONFLICTO CON LA CLASE POKEMON
-DEBERIA ALMACENAR TODOS LOS POSIBLES MOVIMIENTOS Y HABILIDADES O SOLO LOS QUE SE QUIERE USAR?
-
-SI SE ELIGE LA 2: GUARDAR JUNTO A LA FICHA DE ESTE POKEMON UN JSON QUE TENGA TODAS LAS POSIBLES
-OPCIONES PARA ESTE, Y CADA VEZ QUE SE QUIERA MODIFICAR SE HACE UN CHECK CON ESTE FICHERO PARA
-CORROBORAR QUE ES VÁLIDO.
-
-VALORAR UN PATRÓN DE DISEÑO CREACIONAL PARA SIMPLIFCAR
-
-POSIBLE SOLUCIÓN, CONFIGURAR EL POKEMON Y HACER CONSULTAS PARA CORROBORAR LOS DATOS Y DAR ERROR O 
-CREAR LA INSTACIA DEL POKEMON EN CUESTION
-"""
 @dataclass
-class Pokemon:
-        _name: str = "Missingno"
-        _id: int = -1
-        _weight: int = -1
-        _height: int = -1
-        _ability: str = "NULL" 
-        _types: tuple[PokemonType, PokemonType] = ("NULL", "NULL")
-        _moves: Moveset = None
-        _object: str = "NULL"
-        _stats: PokemonStats = PokemonStats()
+class PokemonBase:
+    _data: Metadata = field(default_factory=Metadata)
+    _moves: List[Movement] = field(default_factory=lambda: [Movement() for _ in range(4)])
+    _stats: PokemonStats = field(default_factory=PokemonStats)
+
+    @property
+    def moves(self):
+        return self._moves
+
+    @property
+    def data(self):
+        return self._data
+
+    @property
+    def stats(self):
+        return self._stats
+
+
+@dataclass
+class PokemonFile(PokemonBase):
+    def ConvertToFile(self):
+        file_name: str = self.data.name + '_'.join(random.choices('0123456789abcdef', k=10))
+        with open(f'./Files/Pokemons/{file_name}', 'w') as file:
+            file.write(f'{self.data.name} @ {self.data.object}')
+            file.write(f'Ability: {self.data.ability}')
+            file.write(f'Tera Type: {self.stats.hptype}')
         
-        @property
-        def name(self):
-            return self._name
-        
-        @property
-        def id(self):
-            return self._id
-        
-        @property
-        def weight(self):
-            return self._weight
-        
-        @property
-        def height(self):
-            return self._height
-        
-        @property
-        def ability(self):
-            return self._ability
-        
-        @property
-        def types(self):
-            return self._types
-        
-        @property
-        def moves(self):
-            return self._moves
-        
-        @property
-        def object(self):
-            return self._object
+
+@dataclass
+class PokemonDB(PokemonFile):
+    pass
+
+test = PokemonFile()
+test.ConvertToFile()

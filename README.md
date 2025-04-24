@@ -1,8 +1,8 @@
-# PokemonInformer
+# Pokemon Informer
 
 Esta aplicación pretende ser una herramienta que permita
 
-## Proposito
+## Propósito
 + Profundizar en mis conocimientos sobre python y las aplicaciones de escritorio
 + Aprender las interacciones básicas de una API
 + Aprender a integrar IA en aplicaciones de escritorio
@@ -15,11 +15,11 @@ Esta aplicación pretende ser una herramienta que permita
 
 La persistencia de los datos puede llevarse a cabo a traves de una base de datos o fichero en formato JSON, en caso de usar JSON debería crear una carpeta en el directorio home del usuario para almacenar en diferentes carpetas los diferentes ficheros JSON.
 
-## Documentación
+## Desarrollo
+
+### Documentación
 Se usa el módulo de pyhton *Sphinx*, para generar la documentación del código.
 **Generación** **
-
-## Desarrollo
 
 ### Github
 Usar GithubActions para coverall, integración contínua, cloude sonet, etc
