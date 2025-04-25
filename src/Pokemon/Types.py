@@ -53,6 +53,7 @@ PokemonNature = Literal[
 PokemonAttackCategory = Literal["NULL", "physical", "special", "status"]
 PokemonAttackObjetive = Literal["NULL", "single", "area", "itself", "partner"]
 
+POKEMONSTATS = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"]
 HPTABLE = [
     "fighting",  # 0
     "flying",  # 1

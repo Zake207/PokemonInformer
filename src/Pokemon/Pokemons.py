@@ -10,6 +10,7 @@ from typing import List
 from Movements import Movement
 from Stats import PokemonStats
 from Metadata import Metadata
+from Types import POKEMONSTATS
 from dataclasses import dataclass, field
 import random
 
@@ -47,12 +48,26 @@ class PokemonBase:
 
 @dataclass
 class PokemonFile(PokemonBase):
-    def ConvertToFile(self):
-        file_name: str = self.data.name + '_'.join(random.choices('0123456789abcdef', k=10))
-        with open(f'./Files/Pokemons/{file_name}', 'w') as file:
-            file.write(f'{self.data.name} @ {self.data.object}')
-            file.write(f'Ability: {self.data.ability}')
-            file.write(f'Tera Type: {self.stats.hptype}')
+    def ConvertToFileFormat(self):
+        """
+        Converts Pokémon data to a formatted string suitable for file storage.
+        Returns:
+            str: Formatted string containing Pokémon details.
+        """
+        # file_name: str = self.data.name + '_'.join(random.choices('0123456789abcdef', k=10))
+        file_contents: str = f'{self.data.name} @ {self.data.object}\n'
+        file_contents += f'Ability: {self.data.ability}\n'
+        file_contents += f'Tera Type: {self.stats.hptype}\n'
+        file_contents += 'EVs: ' + ' / '.join(f'{self.stats.evs[stat]} {stat}' 
+                                              for stat in POKEMONSTATS)
+        file_contents += f'\n{self.stats.nature} Nature\n'
+        file_contents += 'IVs: ' + ' / '.join(f'{self.stats.ivs[stat]} {stat}' 
+                                              for stat in POKEMONSTATS)
+        file_contents += f'\n- {self.moves[0].name}\n'
+        file_contents += f'- {self.moves[1].name}\n'
+        file_contents += f'- {self.moves[2].name}\n'
+        file_contents += f'- {self.moves[3].name}\n'
+        return file_contents
         
 
 @dataclass
@@ -60,4 +75,4 @@ class PokemonDB(PokemonFile):
     pass
 
 test = PokemonFile()
-test.ConvertToFile()
+print(test.ConvertToFileFormat())

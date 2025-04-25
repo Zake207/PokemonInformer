@@ -4,7 +4,7 @@ Main module that defines the logic for calculating Pokémon statistics.
 Includes handling of base stats, IVs, EVs, nature, and the Hidden Power type.
 """
 
-from Types import HPTABLE, PokemonType, NATURESTATSEFFECT, PokemonNature
+from Types import HPTABLE, PokemonType, NATURESTATSEFFECT, PokemonNature, POKEMONSTATS
 from dataclasses import dataclass, field
 from typing import Dict
 from math import floor
@@ -26,16 +26,16 @@ class PokemonStats:
     """
 
     _evs: Dict[str, int] = field(
-        default_factory=lambda: {key: 0 for key in ["Hp", "Atk", "Def", "Satk", "Sdef", "Spd"]}
+        default_factory=lambda: {key: 0 for key in POKEMONSTATS}
     )
     _ivs: Dict[str, int] = field(
-        default_factory=lambda: {key: 0 for key in ["Hp", "Atk", "Def", "Satk", "Sdef", "Spd"]}
+        default_factory=lambda: {key: 0 for key in POKEMONSTATS}
     )
     _base: Dict[str, int] = field(
-        default_factory=lambda: {key: 0 for key in ["Hp", "Atk", "Def", "Satk", "Sdef", "Spd"]}
+        default_factory=lambda: {key: 0 for key in POKEMONSTATS}
     )
     _stats: Dict[str, int] = field(
-        default_factory=lambda: {key: 0 for key in ["Hp", "Atk", "Def", "Satk", "Sdef", "Spd"]}
+        default_factory=lambda: {key: 0 for key in POKEMONSTATS}
     )
     _nature: PokemonNature = "hardy"
     _hptype: PokemonType = "fighting"
@@ -47,11 +47,13 @@ class PokemonStats:
 
     @evs.setter
     def evs(self, new_evs: Dict[str, int]):
-        required_keys = {"Hp", "Atk", "Def", "Satk", "Sdef", "Spd"}
+        required_keys = POKEMONSTATS
         if set(new_evs.keys()) != required_keys:
             raise ValueError(f"EVs must contain exactly these keys: {required_keys}")
         if not all(0 <= value <= 255 for value in new_evs.values()):
             raise ValueError("Each EV must be between 0 and 255.")
+        if sum(new_evs.values()) > 510:
+            raise ValueError("The total EVs must not exceed 510.")
         self._evs = new_evs
         self._UpdateStats()
 
@@ -62,7 +64,7 @@ class PokemonStats:
 
     @ivs.setter
     def ivs(self, new_ivs: Dict[str, int]):
-        required_keys = {"Hp", "Atk", "Def", "Satk", "Sdef", "Spd"}
+        required_keys = POKEMONSTATS
         if set(new_ivs.keys()) != required_keys:
             raise ValueError(f"IVs must contain exactly these keys: {required_keys}")
         if not all(0 <= value <= 31 for value in new_ivs.values()):
@@ -111,18 +113,12 @@ class PokemonStats:
         """
         Recalculates the Pokémon's final stats using base stats, IVs, EVs, and nature.
         """
-        self._stats['Hp'] = (
-            floor(((2 * self.base['Hp'] + self.ivs['Hp'] + floor(self.evs['Hp'] / 4)) * 50) / 100)
-            + 50
-            + 10
-        )
-
-        for stat in ['Atk', 'Def', 'Satk', 'Sdef', 'Spd']:
-            nature_modifier = NATURESTATSEFFECT[self.nature][stat]
-            base_calc = (
-                floor(
-                    ((2 * self.base[stat] + self.ivs[stat] + floor(self.evs[stat] / 4)) * 50) / 100
-                )
-                + 5
-            )
-            self._stats[stat] = floor(base_calc * nature_modifier)
+        for stat in POKEMONSTATS:
+            if stat == 'HP':
+                self._stats['Hp'] = (floor(((2 * self.base['Hp'] + self.ivs['Hp'] + 
+                                             floor(self.evs['Hp'] / 4)) * 50) / 100) + 50 + 10)
+            else:
+                nature_modifier = NATURESTATSEFFECT[self.nature][stat]
+                base_calc = (floor(((2 * self.base[stat] + self.ivs[stat] + 
+                                     floor(self.evs[stat] / 4)) * 50) / 100)+ 5)
+                self._stats[stat] = floor(base_calc * nature_modifier)
