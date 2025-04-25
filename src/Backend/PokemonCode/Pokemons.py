@@ -68,11 +68,3 @@ class PokemonFile(PokemonBase):
         file_contents += f'- {self.moves[2].name}\n'
         file_contents += f'- {self.moves[3].name}\n'
         return file_contents
-        
-
-@dataclass
-class PokemonDB(PokemonFile):
-    pass
-
-test = PokemonFile()
-print(test.ConvertToFileFormat())

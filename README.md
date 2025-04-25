@@ -17,6 +17,16 @@ La persistencia de los datos puede llevarse a cabo a traves de una base de datos
 
 ## Desarrollo
 
+### Módulos
+PyQt6 : Para crear interfaces gráficas
+requests : Para realizar peticiones HTTPS
+openai : Para el uso de APIs externas de inteligencias artificiales
+sphinx : Documentación
+sphinx-rtd-theme : Para personalizar la documentación
+pylint : Linter
+black : Formater
+pytest : Test unitarios
+
 ### Documentación
 Se usa el módulo de pyhton *Sphinx*, para generar la documentación del código.
 **Generación** **

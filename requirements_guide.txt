@@ -1,8 +1,0 @@
-PyQt6 // Para crear interfaces gráficas
-requests // Para realizar peticiones HTTPS
-openai // Para el uso de APIs externas de inteligencias artificiales
-sphinx // Documentación
-sphinx-rtd-theme // Para personalizar la documentación
-pylint // Linter
-black // Formater
-pytest // Test unitarios
