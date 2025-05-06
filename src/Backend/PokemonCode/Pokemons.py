@@ -7,13 +7,10 @@ Includes:
     + DataBase Storage
 """
 from typing import List
-from Movements import Movement
 from Stats import PokemonStats
 from Metadata import Metadata
 from Types import POKEMONSTATS
 from dataclasses import dataclass, field
-import random
-
 
 """
 DECISIÓN DEL DISEÑO: CADA VEZ QUE SE QUIERA EDITAR UN POKEMON SE HACE USO DE LA API PARA CONSULTAR 
@@ -30,7 +27,7 @@ AL GUARDAR LA SELECCIÓN SE HACEN LAS CONSULTAS DE LOS MOVIMIENTOS, LAS HABILIDA
 @dataclass
 class PokemonBase:
     _data: Metadata = field(default_factory=Metadata)
-    _moves: List[Movement] = field(default_factory=lambda: [Movement() for _ in range(4)])
+    _moves: List[str] = field(default_factory=lambda: ['-' for _ in range(4)])
     _stats: PokemonStats = field(default_factory=PokemonStats)
 
     @property
