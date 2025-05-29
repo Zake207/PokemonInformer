@@ -16,6 +16,9 @@ Esta aplicación pretende ser una herramienta que permita
 La persistencia de los datos puede llevarse a cabo a traves de una base de datos o fichero en formato JSON, en caso de usar JSON debería crear una carpeta en el directorio home del usuario para almacenar en diferentes carpetas los diferentes ficheros JSON.
 
 ## Desarrollo
+En una primera fase trate de definir el código fuente de las clases que se iban a usar, la lógica princial de la base de datos y demás factores, sin embargo he llegué a un punto en el que no puedo desarrollar de manera clara debido a que desconozco ciertos datos que me aportaría ver la interfaz e imaginandome como se va a comportar. Por lo que aún sin terminar la lógica por completo voy a dedicarme a diseñar y crear el frontend de la aplicación.
+
+Para facilitar el diseño del código voy a optar por modularizar los elementos del programa como botones y demás
 
 ### Módulos
 PyQt6 : Para crear interfaces gráficas
