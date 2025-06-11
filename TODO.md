@@ -7,6 +7,7 @@
 + Aplicación de escritorio.
 
 ## FRONTEND
-+ Acabar el diseño de `MainMenu`
 + Separar en ficheros el código de `MainMenu`
++ Crear el diseño del frame `Pokemon`
++ Crear el diseño del frame `Teams`
 

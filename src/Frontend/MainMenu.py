@@ -1,24 +1,25 @@
 """
-    This module is a general example about the main window of the project
+    This module defines the code of the main window of the program.
 """
 
 import sys
 from PyQt6.QtGui import *
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
+from math import trunc
 
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
-
         # Tamaño inicial y restricciones
         self.setGeometry(100, 100, 600, 450)
         self.setMinimumSize(400, 300)
         self.setMaximumSize(800, 600)
 
         # Título e icono de la ventana
-        self.setWindowTitle("Pokemon Informer")
+        self.setWindowTitle("PokeManager")
         self.setWindowIcon(QIcon("./Images/pokeball.png"))
+        # Añadir imágenes a la ventana
 # Configuración de los botones
         self.pokemon_button = QPushButton("Pokemons", self)
         self.pokemon_button.setGeometry(400, 300, 200, 40)  # Posición y tamaño
@@ -178,13 +179,26 @@ class MainWindow(QMainWindow):
         Dibuja la imagen de fondo escalada al tamaño de la ventana.
         """
         painter = QPainter(self)
-        painter.setOpacity(0.5)
+        painter.setOpacity(0.8)
         scaled_bg = self.background.scaled(
             self.size(),
             Qt.AspectRatioMode.IgnoreAspectRatio,
             Qt.TransformationMode.SmoothTransformation,
         )
         painter.drawPixmap(0, 0, scaled_bg)
+        # Adjust button sizes and positions proportionally to the window size
+        window_width = self.width()
+        window_height = self.height()
+
+        button_width = trunc(window_width * 0.25)
+        button_height = trunc(window_height * 0.1)
+        button_x = trunc(window_width * 0.37)
+        button_y = trunc(window_height * 0.5)
+        spacing = trunc(window_height * 0.15)
+
+        self.pokemon_button.setGeometry(button_x, button_y, button_width, button_height)
+        self.team_button.setGeometry(button_x, spacing + button_y, button_width, button_height)
+        self.exit_button.setGeometry(button_x, 2 * spacing + button_y, button_width, button_height)
 
     def resizeEvent(self, event):
         """
